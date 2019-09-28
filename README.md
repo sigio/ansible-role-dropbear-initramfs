@@ -1,5 +1,5 @@
-Role Name
-=========
+sigio.dropbear-initramfs
+========================
 
 Configure dropbear-initramfs to allow remote (ssh) unlocks of Luks encrypted root-volumes
 
@@ -39,7 +39,7 @@ Including an example of how to use your role (for instance, with variables passe
 License
 -------
 
-BSD
+MIT
 
 Author Information
 ------------------
