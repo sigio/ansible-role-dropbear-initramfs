@@ -1,0 +1,9 @@
+---
+# handlers file for sigio-dropbear-initramfs
+
+- name: Update Initramfs
+  command: update-initramfs -u
+
+- name: Update Grub
+  command: update-grub
+

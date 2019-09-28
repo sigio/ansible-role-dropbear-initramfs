@@ -1,0 +1,26 @@
+---
+# tasks file for sigio-dropbear-initramfs
+
+- name: Install dropbear-initramfs
+  apt:
+    state: installed
+    pkg:
+      - dropbear-initramfs
+  when:
+    - encrypted_rootfs|bool
+
+- name: Template dropbear-initramfs files
+  template:
+    src: "{{item.src}}"
+    dest: "{{item.dest}}"
+    owner: "{{item.owner|default('root')}}"
+    group: "{{item.group|default('root')}}"
+    mode: "{{item.mode|default('0644')}}"
+  with_items:
+    - { src: "dropbear-config.j2", dest: "/etc/dropbear-initramfs/config" }
+    - { src: "dropbear-authorized_keys.j2", dest: "/etc/dropbear-initramfs/authorized_keys", notify: "Update Initramfs" }
+    - { src: "default-grub", dest: "/etc/default/grub", mode: "0755", notify: "Update Grub" }
+  notify: "{{item.notify|default([])}}"
+  when:
+    - encrypted_rootfs|bool
+

@@ -1,0 +1,8 @@
+---
+# defaults file for sigio-dropbear-initramfs
+
+encrypted_rootfs: false
+dropbear_port: 10022
+dropbear_options: "-R -E -s -j -k -K 20 -I 120 -p {{dropbear_port}} -c /usr/bin/cryptroot-unlock"
+grub_cmdline_linux: "net.ifnames=0 biosdevname=0 ip=1.2.3.4::1.2.3.1:255.255.255.0::eth0:off"
+
